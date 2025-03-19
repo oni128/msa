@@ -1,0 +1,25 @@
+server:
+  port: 8111
+
+spring:
+  application:
+    name: swcamp-user-service
+
+#    jpa? mybatis? ???? ??
+  ## db config
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/menudb
+    username: swcamp
+    password: swcamp
+
+    ## jpa conifg
+    jpa:
+      hibernate:
+        ddl-auto: create
+      show-sql: true
+      database: mysql
+      properties:
+        hibernate:
+          '[format_sql]': true
+
