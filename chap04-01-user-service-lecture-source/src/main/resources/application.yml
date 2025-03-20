@@ -23,3 +23,7 @@ spring:
         hibernate:
           '[format_sql]': true
 
+token:
+  expiration_time:43200000 # 12시간
+  secret: FGSG== # HMACKKKEY
+
