@@ -4,8 +4,6 @@ import com.ohgiraffers.userservice.aggregate.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
-    UserEntity findByEmail(String email); /*UserEntity라는 엔티티에 대한*/
-
-
+    UserEntity findByEmail(String email);   /*UserEntity라는 엔티티에 대한*/
 
 }

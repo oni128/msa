@@ -8,6 +8,6 @@ public class UserDTO {
     private String name;
     private String pwd;
 
-    /* 설명. 회원 가입 할 때 고유 번호 할당 */
+    /* 설명. 회원가입 진행하며 추가됨 */
     private String userId;
 }

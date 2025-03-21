@@ -3,8 +3,7 @@ package com.ohgiraffers.userservice.vo;
 import lombok.Data;
 
 @Data
-public class RequestRegistUserVO {
+public class RequestLoginVO {
     private String email;
-    private String name;
     private String pwd;
 }

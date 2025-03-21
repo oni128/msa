@@ -5,7 +5,6 @@ spring:
   application:
     name: swcamp-user-service
 
-#    jpa? mybatis? ???? ??
   ## db config
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
@@ -13,17 +12,16 @@ spring:
     username: swcamp
     password: swcamp
 
-    ## jpa conifg
-    jpa:
+  ## jpa config
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database: mysql
+    properties:
       hibernate:
-        ddl-auto: create
-      show-sql: true
-      database: mysql
-      properties:
-        hibernate:
-          '[format_sql]': true
+        '[format_sql]': true
 
 token:
-  expiration_time:43200000 # 12시간
-  secret: FGSG== # HMACKKKEY
-
+  expiration_time: 43200000
+  secret: FqSgMPMdL8Ce0Haco2j71LRDOz1hqR0oolHRI5VMQtLZ7ENfR4Vh5n9L1jPEIjFGeJGLXeFtXMfxeYs50pR0DQ==

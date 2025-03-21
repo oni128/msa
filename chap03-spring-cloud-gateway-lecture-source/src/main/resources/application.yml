@@ -13,25 +13,55 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: 1st-service-get
-          #          uri: http://localhost:62295/
+        #        - id: 1st-service-get
+        ##          uri: http://localhost:62295/
+        #
+        #          # 라우팅 될 마이크로 서비스 application name을 작성(유레카 서버의 대쉬보드에서 이름 확인)
+        #          uri: lb://1ST-SERVICE
+        #
+        #          # 게이트웨이 요청이 아래와 같은 패턴으로 온다면(일종의 조건문)
+        #          predicates:
+        #            - Path=/first-service/**
+        #
+        #          # 이후 라우팅 될 마이크로 서비스에 /first-service라는 접두사가 제외되어 요청되게 할 내용 + 필터
+        #          filters:
+        #            - RewritePath=/first-service/(?<segment>.*), /$\{segment}
+        #            - AddRequestHeader=first-request, first-request-header
+        #            - AddResponseHeader=first-response, first-response-header
+        #
+        #        - id: 2nd-service-get
+        #          uri: lb://2ND-SERVICE
+        #          predicates:
+        #            - Path=/second-service/**
+        #          filters:
+        #            - RewritePath=/second-service/(?<segment>.*), /$\{segment}
 
-          # ??? ? ???? ??? application name? ??(??? ??? ?????? ?? ??)
-          uri: lb://1ST-SERVICE
-
-          # ????? ??? ??? ?? ???? ???(??? ???)
+        - id: user-service-post
+          uri: lb://SWCAMP-USER-SERVICE
           predicates:
-            - Path=/first-service/**
-
-          # ?? ??? ? ???? ???? /first-service?? ???? ???? ???? ? ?? + ??
+            - Path=/user-service/**
+            - Method=POST
           filters:
-            - RewritePath=/first-service/(?<segment>.*), /$\{segment}
-            - AddRequestHeader=first-request, first-request-header
-            - AddResponseHeader=first-response, first-response-header
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
 
-        - id: 2nd-service-get
-          uri: lb://2ND-SERVICE
+        - id: user-service-get
+          uri: lb://SWCAMP-USER-SERVICE
           predicates:
-            - Path=/second-service/**
+            - Path=/user-service/**
+            - Method=GET
           filters:
-            - RewritePath=/second-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+
+        - id: order-service-get
+          uri: lb://SWCAMP-ORDER-SERVICE
+          predicates:
+            - Path=/order-service/**
+            - Method=GET
+          filters:
+            - RewritePath=/order-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+
+token:
+  expiration_time: 43200000
+  secret: FqSgMPMdL8Ce0Haco2j71LRDOz1hqR0oolHRI5VMQtLZ7ENfR4Vh5n9L1jPEIjFGeJGLXeFtXMfxeYs50pR0DQ==
